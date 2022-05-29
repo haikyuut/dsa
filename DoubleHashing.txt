@@ -1,0 +1,39 @@
+from Record import Record
+
+class doubleHashTable:
+    # initialize hash Table
+    def __init__(self):
+        self.size = int(input("Enter the Size of the hash table : "))
+        
+        # initialize table with all elements 0
+        self.table = list(None for i in range(self.size))
+        self.elementCount = 0
+        self.comparisons = 0
+   
+   
+    # method that checks if the hash table is full or not
+    def isFull(self):
+        if self.elementCount == self.size:
+            return True
+        else:
+            return False
+      
+    
+    # First hash function
+    def h1(self, element):
+        return element % self.size
+       
+    # Second hash function
+    def h2(self, element):
+        return 5-(element % 5)
+           
+   
+    # method to resolve collision by double hashing method
+    def doubleHashing(self, record):
+        posFound = False
+        # limit variable is used to restrict the function from going into infinite loop
+        # limit is useful when the table is 80% full
+        limit = self.size
+        i = 1
+        # start a loop to find the position
+        while i <= limit:
